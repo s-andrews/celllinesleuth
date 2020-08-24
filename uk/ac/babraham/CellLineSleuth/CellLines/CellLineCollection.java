@@ -27,8 +27,9 @@ public class CellLineCollection {
 			String id = sections[1];
 			String chr = sections[2];
 			int pos = Integer.parseInt(sections[3]);
-			char ref = sections[5].charAt(0);
-			char alt = sections[6].charAt(0);
+			String strand = sections[5];
+			char ref = sections[6].charAt(0);
+			char alt = sections[7].charAt(0);
 			float penetrance = 1;
 			
 			if (sections[7].equals("het")) {
@@ -39,7 +40,7 @@ public class CellLineCollection {
 			if (!cellLines.containsKey(cell)) {
 				addCellLine(new CellLine(cell));
 			}
-			SNP snp = new SNP(getLine(cell),id,chr, pos, ref, alt, penetrance);			
+			SNP snp = new SNP(getLine(cell),id,chr, pos, strand, ref, alt, penetrance);			
 			getLine(cell).addSNP(snp);
 			allSNPs.add(snp);
 			if (!snpsByChrom.containsKey(chr)) {
@@ -84,5 +85,7 @@ public class CellLineCollection {
 		return cellLines.get(name);
 	}
 	
+	
+
 	
 }
