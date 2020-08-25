@@ -16,7 +16,7 @@ public class CellLineSleuthApplication {
 	private CellLineCollection cells;
 	
 	public CellLineSleuthApplication (File snpFile, File bamFile, File outFile) {
-		
+				
 		if (System.getProperty("quiet").equals("true")) {
 			CellLineSleuthApplication.QUIET = true;
 		}
