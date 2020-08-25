@@ -1,24 +1,23 @@
 library(tidyverse)
 theme_set(theme_bw(base_size=14))
 
+# We pick up the input file from ARGV
+input_file <- commandArgs(trailingOnly = TRUE)[1]
+str_replace(input_file,".txt$",".png") -> output_file
+
+## For testing only
 #input_file <- "e:/COSMIC/COLO205_sleuth.txt"
 #output_file <- "e:/COSMIC/COLO205_sleuth.png"
 
-input_file <- "e:/COSMIC/MCF7_sleuth.txt"
-output_file <- "e:/COSMIC/MCF7_sleuth.png"
-
-
+# Read the input file
 read_tsv(input_file) -> sleuth_data
 
-# Get the total count
+# Get the total obervation count for each SNP
 sleuth_data %>%
   mutate(TOTAL=REFCOUNT+ALTCOUNT+OTHERCOUNT) -> sleuth_data
 
-# Calculate the expected ALT count
-sleuth_data %>%
-  mutate(EXPECTED_ALT=if_else(ZYG=="het", as.integer(TOTAL/2),as.integer(TOTAL))) -> sleuth_data
 
-
+# Plot the data as a stripchart
 sleuth_data %>%
   ggplot(aes(x=LINE, y=100*ALTCOUNT/TOTAL, colour=ZYG, size=TOTAL)) +
   geom_jitter(height=0, width=0.3) +
