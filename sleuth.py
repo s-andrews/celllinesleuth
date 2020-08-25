@@ -57,7 +57,7 @@ def run_snp_calling(options):
     
     outfile = outfile+"_sleuth.txt"
 
-    subprocess.run([options.java,"-cp",joined_classpath,"uk/ac/babraham/CellLineSleuth/CellLineSleuthApplication",options.snpfile, options.bamfile,outfile])
+    subprocess.run([options.java,"-cp",joined_classpath,"uk/ac/babraham/CellLineSleuth/CellLineSleuthApplication",options.snpfile, options.bamfile,outfile], check=True)
 
     return outfile
 
@@ -65,7 +65,7 @@ def draw_graph(infile, options):
 
     current = os.path.dirname(os.path.realpath(__file__))
 
-    subprocess.run([options.rscript,current+"/R/create_sleuth_graph.R",infile])
+    subprocess.run([options.rscript,current+"/R/create_sleuth_graph.R",infile], check=True, stdout=subprocess.DEVNULL)
 
 
 def read_options():
