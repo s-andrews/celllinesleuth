@@ -11,12 +11,12 @@ public class SNP {
 	private String strand;
 	private char REF;
 	private char ALT;
-	private float penetrance;
+	private String penetrance;
 	
 	private static HashMap<Character, Character> revcomp = SNP.makeRevcomp();
 
 	
-	public SNP (CellLine cell, String id, String chr, int pos, String strand, char REF, char ALT, float penetrance) {
+	public SNP (CellLine cell, String id, String chr, int pos, String strand, char REF, char ALT, String penetrance) {
 		this.cell = cell;
 		this.id = id;
 		this.chr = chr;
@@ -57,7 +57,7 @@ public class SNP {
 		return ALT;
 	}
 	
-	public float penetrance () {
+	public String penetrance () {
 		return penetrance;
 	}
 	

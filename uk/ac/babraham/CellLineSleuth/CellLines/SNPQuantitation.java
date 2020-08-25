@@ -39,4 +39,8 @@ public class SNPQuantitation {
 	public int OTHER () {
 		return OTHER;
 	}
+	
+	public int total() {
+		return REF+ALT+OTHER;
+	}
 }

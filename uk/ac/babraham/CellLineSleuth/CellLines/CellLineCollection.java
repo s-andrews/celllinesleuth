@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.HashMap;
 
 public class CellLineCollection {
@@ -30,12 +31,7 @@ public class CellLineCollection {
 			String strand = sections[5];
 			char ref = sections[6].charAt(0);
 			char alt = sections[7].charAt(0);
-			float penetrance = 1;
-			
-			if (sections[7].equals("het")) {
-				penetrance = 0.5f;
-			}
-			
+			String penetrance = sections[8];			
 			
 			if (!cellLines.containsKey(cell)) {
 				addCellLine(new CellLine(cell));
@@ -56,6 +52,14 @@ public class CellLineCollection {
 	}
 	
 	public SNP [] allSNPs () {
+		
+		allSNPs.sort(new Comparator<SNP>() {	
+			@Override
+			public int compare(SNP s1, SNP s2) {
+				return s1.cell().name().compareTo(s2.cell().name());
+			}
+		});
+		
 		return allSNPs.toArray(new SNP[0]);
 	}
 	
