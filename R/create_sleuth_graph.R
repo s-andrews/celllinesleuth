@@ -3,11 +3,21 @@ theme_set(theme_bw(base_size=14))
 
 # We pick up the input file from ARGV
 input_file <- commandArgs(trailingOnly = TRUE)[1]
-str_replace(input_file,".txt$",".png") -> output_file
+format <- commandArgs(trailingOnly = TRUE)[2]
 
 ## For testing only
-#input_file <- "e:/COSMIC/COLO205_sleuth.txt"
-#output_file <- "e:/COSMIC/COLO205_sleuth.png"
+# input_file <- "e:/COSMIC/MCF7_sleuth.txt"
+# format <- "svg"
+
+
+str_replace(input_file,".txt$",".png") -> output_file
+height <- 5
+width <- 8
+
+if (format == "svg") {
+  str_replace(input_file,".txt$",".svg") -> output_file
+}
+
 
 # Read the input file
 read_tsv(input_file) -> sleuth_data
@@ -25,4 +35,5 @@ sleuth_data %>%
   ylab("ALT percentage") +
   scale_color_brewer(palette = "Set1") -> sleuth_plot
 
-ggsave(output_file,plot=sleuth_plot)
+ggsave(output_file,device = format, plot=sleuth_plot,width = width, height = height, units = "in", dpi = 200)
+
