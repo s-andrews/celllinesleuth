@@ -40,12 +40,13 @@ def process_file(options):
 def run_snp_calling(options):
 
     # Find the current location so we can set the classpath
-    current = os.path.dirname(os.path.realpath(__file__)
+    current = os.path.dirname(os.path.realpath(__file__))
+
     classpath = [current, current+"/htsjdk.jar", current+"/commons_compress.jar"]
 
     subprocess.run([options.java,"-cp",";".join(classpath),"uk/ac/babraham/CellLineSleuth/CellLineSleuthApplication",options.snpfile, options.bamfile,"test.png"])
 
-    pass
+    return "test.png"
 
 def draw_graph(infile):
     pass
