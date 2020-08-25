@@ -40,8 +40,8 @@ def process_file(options):
 
             line_count += 1
 
-            if line_count % 100000 == 0:
-                print (f"Read {line_count} lines")
+            if line_count % 100000 == 0 and not options.quiet:
+                print (f"Read {line_count} lines", flush=True)
 
             if line.startswith("Gene name"):
                 continue
