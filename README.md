@@ -35,7 +35,7 @@ Since there are so many cell lines in COSMIC you are unlikely to want to test th
 * HCT-116
 * H9
 
-..but you can pick whichever ones you like.
+..but you can pick whichever ones you like.  The list of cells you can choose can be seen [here](https://cancer.sanger.ac.uk/cell_lines/cbrowse/all)
 
 You then need to run the ```cosmic_diagnostic_snps.py``` file, which is in the ```cosmic``` folder of the distribtion.  This takes the COSMIC data file and a list of cell lines as input and generates a SNP file which you'll need for the analysis.
 
