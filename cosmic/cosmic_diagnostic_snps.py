@@ -19,10 +19,17 @@
 ############################################################################
 
 
-import sys
+VERSION = 1.0
 
-interesting_cell_lines = ["MCF7","HeLa","COLO-205","HCT-116","H9"]
-def process_file(file,outfile):
+import sys
+import argparse
+
+def process_file(options):
+
+    file = options.cosmicfile
+    outfile = options.outfile
+
+    interesting_cell_lines = options.cells.split(",")
 
     mutations = {}
     mutation_details = {}
@@ -98,12 +105,23 @@ def process_file(file,outfile):
     for line in per_line_count.items():
         print("\t".join([str(x) for x in line]))
 
-def main():
-    if len(sys.argv) > 2:
-        process_file(sys.argv[1], sys.argv[2])
+def read_options():
+    parser = argparse.ArgumentParser(description="Prepare unique SNPS for cell line sleuth")
 
-    else:
-        process_file("e:/COSMIC/CosmicCLP_MutantExport.tsv","e:/COSMIC/cosmic_diagnostic_snps.txt")
+    parser.add_argument('--quiet', dest="quiet", action='store_true', default=False, help="Supress all but essential messages")
+    parser.add_argument('--version', action='version', version=f"Cell Line Sleuth v{VERSION}")
+    parser.add_argument('--cells', type=str, help="Comma delimited list of cells to identify", default="MCF7,HeLa,COLO-205,HCT-116,H9")
+    parser.add_argument('cosmicfile', type=str, help="The COSMIC SNP file to process")
+    parser.add_argument('outfile', type=str, help="Where to write the output")
+
+    options = parser.parse_args()
+
+    return options
+
+def main():
+
+    options = read_options()
+    process_file(options)
 
 
 if __name__ == "__main__":
