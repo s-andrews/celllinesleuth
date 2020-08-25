@@ -31,7 +31,12 @@ public class CellLineCollection {
 			String strand = sections[5];
 			char ref = sections[6].charAt(0);
 			char alt = sections[7].charAt(0);
-			String penetrance = sections[8];			
+			String penetrance = sections[8];
+			
+			// We will stick with using bare chromosome names
+			if (chr.startsWith("chr")) {
+				chr = chr.substring(3);
+			}
 			
 			if (!cellLines.containsKey(cell)) {
 				addCellLine(new CellLine(cell));

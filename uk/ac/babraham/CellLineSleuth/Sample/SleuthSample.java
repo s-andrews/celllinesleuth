@@ -48,6 +48,11 @@ public class SleuthSample {
 			
 			String chr = r.getReferenceName();
 			
+			// We use bare chromosome names
+			if (chr.startsWith("chr")) {
+				chr = chr.substring(3);
+			}
+			
 			SNP [] snps = cells.getSNPSbyChr(chr);
 			
 			for (SNP s : snps) {
