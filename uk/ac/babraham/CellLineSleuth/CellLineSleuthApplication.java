@@ -11,10 +11,20 @@ import uk.ac.babraham.CellLineSleuth.Sample.SleuthSample;
 
 public class CellLineSleuthApplication {
 
-	CellLineCollection cells;
+	public static boolean QUIET = false;
+	
+	private CellLineCollection cells;
 	
 	public CellLineSleuthApplication (File snpFile, File bamFile, File outFile) {
-		System.err.println("Parsing SNPS from "+snpFile.getName());
+		
+		if (System.getProperty("quiet").equals("true")) {
+			CellLineSleuthApplication.QUIET = true;
+		}
+		
+		if (!CellLineSleuthApplication.QUIET) {
+			System.err.println("Parsing SNPS from "+snpFile.getName());
+		}
+		
 		try {
 			cells = new CellLineCollection(snpFile);
 		}
@@ -24,13 +34,21 @@ public class CellLineSleuthApplication {
 			System.exit(1);
 		}
 		
-		System.err.println("Parsed "+cells.allSNPs().length+" SNPs");
+		if (!CellLineSleuthApplication.QUIET) {
+			System.err.println("Parsed "+cells.allSNPs().length+" SNPs");
+		}
 		
-		System.err.println("Reading data from "+bamFile.getName());
+		if (!CellLineSleuthApplication.QUIET) {
+			System.err.println("Reading data from "+bamFile.getName());
+		}
+		
 		SleuthSample sample = new SleuthSample(bamFile);
 		sample.quantitateSNPs(cells);
 
-		System.err.println("Writing output to "+outFile.getName());
+		if (!CellLineSleuthApplication.QUIET) {
+			System.err.println("Writing output to "+outFile.getName());
+		}
+		
 		try {
 			PrintWriter pr = new PrintWriter(outFile);
 

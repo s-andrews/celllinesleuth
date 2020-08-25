@@ -57,7 +57,12 @@ def run_snp_calling(options):
     
     outfile = outfile+"_sleuth.txt"
 
-    subprocess.run([options.java,"-cp",joined_classpath,"uk/ac/babraham/CellLineSleuth/CellLineSleuthApplication",options.snpfile, options.bamfile,outfile], check=True)
+    quiet_value = "false"
+
+    if options.quiet:
+        quiet_value = "true"
+
+    subprocess.run([options.java,"-cp",joined_classpath,f'-Dquiet="{quiet_value}',"uk/ac/babraham/CellLineSleuth/CellLineSleuthApplication",options.snpfile, options.bamfile,outfile], check=True)
 
     return outfile
 

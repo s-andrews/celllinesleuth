@@ -9,6 +9,7 @@ import htsjdk.samtools.SAMRecordIterator;
 import htsjdk.samtools.SamReader;
 import htsjdk.samtools.SamReaderFactory;
 import htsjdk.samtools.ValidationStringency;
+import uk.ac.babraham.CellLineSleuth.CellLineSleuthApplication;
 import uk.ac.babraham.CellLineSleuth.CellLines.CellLineCollection;
 import uk.ac.babraham.CellLineSleuth.CellLines.SNP;
 import uk.ac.babraham.CellLineSleuth.CellLines.SNPQuantitation;
@@ -38,8 +39,10 @@ public class SleuthSample {
 		
 			++count;
 			
-			if (count % 1000000 == 0) {
-				System.err.println("Read "+count+" alignments");
+			if (!CellLineSleuthApplication.QUIET) {
+				if (count % 1000000 == 0) {
+					System.err.println("Read "+count+" alignments");
+				}
 			}
 			
 			SAMRecord r = sam_it.next();
