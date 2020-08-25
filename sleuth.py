@@ -65,7 +65,7 @@ def draw_graph(infile, options):
 
     current = os.path.dirname(os.path.realpath(__file__))
 
-    subprocess.run([options.rscript,current+"/R/create_sleuth_graph.R",infile], check=True, stdout=subprocess.DEVNULL)
+    subprocess.run([options.rscript,current+"/R/create_sleuth_graph.R",infile], check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
 
 
 def read_options():
