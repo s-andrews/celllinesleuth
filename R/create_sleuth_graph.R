@@ -12,7 +12,7 @@ str_replace(input_file,".txt$",".png") -> output_file
 # Read the input file
 read_tsv(input_file) -> sleuth_data
 
-# Get the total obervation count for each SNP
+# Get the total observation count for each SNP
 sleuth_data %>%
   mutate(TOTAL=REFCOUNT+ALTCOUNT+OTHERCOUNT) -> sleuth_data
 
