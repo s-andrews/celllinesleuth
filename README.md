@@ -1,4 +1,5 @@
 ![Cell Line Sleuth](https://raw.githubusercontent.com/s-andrews/celllinesleuth/master/logo/cell_line_sleuth_600.png)
+
 This program can be used as a QC step in the processing of high throughput sequence data to try to validate the source of the cells you have used in your experiment.
 
 People generally know the cell line they are using, and with databases such as [COSMIC cell lines](https://cancer.sanger.ac.uk/cell_lines) and the [Cancer Cell Line Encyclopedia](https://portals.broadinstitute.org/ccle) we have lists of variants associated with different cell lines which we can use to confirm their identity.
