@@ -13,7 +13,7 @@ Before installing Cell Line Sleuth on your system there are a few dependencies y
 
 1. A java runtime environment.  Any recent version of java is fine.  This will be available in your operating system pacakge repository.
 
-2. An R installation.  The graphing in Cell Line Sleuth uses ggplot so you will need to install R and you will need to have installed the tidyverse package (```install.packages("tidyverse")```)
+2. An R installation.  The graphing in Cell Line Sleuth uses ggplot so you will need to install R and you will need to have installed the tidyverse package (```install.packages("tidyverse")```).  If you want to generate graphs in SVG format (using the ```--svg``` option) then you'll also need to install the R svglite package (```install.packages("svglite")```)
 
 3. Python3 - you need python3 (version 3.6 or above)
 
