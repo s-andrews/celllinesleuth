@@ -58,7 +58,6 @@ public class CellLineSleuthApplication {
 			System.exit(2);
 		}
 		
-		System.err.println("All finished");
 	}
 	
 	public static void main(String[] args) {
