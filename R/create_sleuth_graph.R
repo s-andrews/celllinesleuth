@@ -33,7 +33,8 @@ sleuth_data %>%
   geom_jitter(height=0, width=0.3) +
   ggtitle(input_file) +
   ylab("ALT percentage") +
-  scale_color_brewer(palette = "Set1") -> sleuth_plot
+  scale_color_brewer(palette = "Set1") +
+  coord_cartesian(ylim=c(0,100)) -> sleuth_plot
 
 ggsave(output_file,device = format, plot=sleuth_plot,width = width, height = height, units = "in", dpi = 200)
 
